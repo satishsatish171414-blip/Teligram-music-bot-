@@ -52,7 +52,7 @@ async def play(_, m: Message):
         chat_id = m.chat.id
         queues.setdefault(chat_id, []).append((title, path))
         if len(queues[chat_id]) == 1:
-            await call_py.join_group_call(chat_id, MediaStream(path)
+            await call_py.join_group_call(chat_id, MediaStream(path))
         await status.edit_text(f"🎵 Added: **{title}**")
     except Exception as e:
         await status.edit_text(f"❌ Error: {e}")
