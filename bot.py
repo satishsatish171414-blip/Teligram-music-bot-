@@ -1,6 +1,5 @@
 import pyrogram.errors
-pyrogram.errors.GroupcallForbidden =    
-getattr(pyrogram.errors, "GroupCallForbidden", Exception)
+pyrogram.errors.GroupcallForbidden =    getattr(pyrogram.errors, "GroupCallForbidden", Exception)
 
 import os
 import asyncio
