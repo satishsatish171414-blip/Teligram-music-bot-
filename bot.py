@@ -1,8 +1,6 @@
 import pyrogram.errors
 if not hasattr(pyrogram.errors, "GroupcallForbidden"):
-    
-pyrogram.errors.GroupcallForbidden = 
-pyrogram.errors.GroupCallForbidden
+pyrogram.errors.GroupcallForbidden =    pyrogram.errors.GroupCallForbidden
 
 import os
 import asyncio
