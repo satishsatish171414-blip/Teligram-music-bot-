@@ -11,7 +11,7 @@ from yt_dlp import YoutubeDL
 from config import BOT_TOKEN, API_ID, API_HASH, SESSION_NAME
 
 bot = Client("music_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
-user = Client(SESSION_NAME, api_id=API_ID, api_hash=API_HASH)
+user = Client("user", api_id=API_ID, api_hash=API_HASH, session_string=SESSION_NAME)
 call_py = PyTgCalls(user)
 
 queues = {}
