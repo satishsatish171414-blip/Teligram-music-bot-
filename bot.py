@@ -3,7 +3,7 @@ import asyncio
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from pytgcalls import PyTgCalls
-from pytgcalls.types import AudioPiped
+from pytgcalls.types import MediaStream
 from yt_dlp import YoutubeDL
 from config import BOT_TOKEN, API_ID, API_HASH, SESSION_NAME
 
@@ -35,7 +35,7 @@ async def play_next(chat_id):
     if not q:
         return
     title, path = q[0]
-    await call_py.play(chat_id, AudioPiped(path))
+    await call_py.play(chat_id, MediaStream(path))
 
 @bot.on_message(filters.command("start"))
 async def start(_, m: Message):
@@ -52,7 +52,7 @@ async def play(_, m: Message):
         chat_id = m.chat.id
         queues.setdefault(chat_id, []).append((title, path))
         if len(queues[chat_id]) == 1:
-            await call_py.join_group_call(chat_id, AudioPiped(path))
+            await call_py.join_group_call(chat_id, MediaStream(path)
         await status.edit_text(f"🎵 Added: **{title}**")
     except Exception as e:
         await status.edit_text(f"❌ Error: {e}")
@@ -72,7 +72,7 @@ async def skip(_, m: Message):
         return await m.reply_text("📭 Nothing is playing.")
     q.pop(0)
     if q:
-        await call_py.change_stream(chat_id, AudioPiped(q[0][1]))
+        await call_py.change_stream(chat_id, MediaStream(q[0][1]))
         await m.reply_text(f"⏭️ Playing: **{q[0][0]}**")
     else:
         await call_py.leave_group_call(chat_id)
